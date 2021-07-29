@@ -36,6 +36,7 @@ function vira(Elemento){
         }
     }
     console.log(cartas);
+    console.log(cartas);
     op++;
 }
 
