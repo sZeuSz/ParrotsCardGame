@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+*{
+    box-sizing: border-box;
+}
+.title-of-game{
+    color:#75B79E;
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 50px;
+}
+
+body{
+    background-color: #EEF9BF;
+}
+.memoizacao{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 70vw;
+    margin: 0 auto;
+    background-color: black;
+}
+.carta{
+    display:flex;
+    align-items: center;
+    border: 1px solid #99CEA8;
+    margin-right: 34px;
+    width:117px;
+    height:146px;
+    border-radius: 5px;
+    background-color: #A7E9AF;
+}
+
+/* ROTATE */
+.card {
+    position: relative;
+    display:flex;
+    align-items: center;
+    border: 1px solid #99CEA8;
+    margin: 20px;
+    width:117px;
+    height:146px;
+    border-radius: 5px;
+    background-color: #A7E9AF;
+  }
+
+  .front-face {
+    position: absolute;
+    left: 8px;
+    width: 100px;
+    height: 100px;
+    /* background-color: #A7E9AF; */
+    /* border-radius: 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    transition: all .9s;
+    transform-style: preserve-3d;
+    
+  }
+
+  .back-face {
+    position: absolute;
+    left: 8px;
+    width: 100px;
+    height: 100px;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    transition: all .9s;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+  }
+
+.desroda-back-face{
+  transform: rotateY(0deg);
+}
+  /* .card:hover .back-face {
+    transform: rotateY(0deg);
+  }
+
+  .card:hover .front-face {
+    transform: rotateY(-180deg);
+  } */
+.roda-front-face{
+  transform: rotateY(-180deg);
+}
+.clicado{
+
+}
