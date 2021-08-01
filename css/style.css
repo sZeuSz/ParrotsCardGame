@@ -178,3 +178,23 @@ ion-icon{
   margin: 0;
   font-size: 25px;
 }
+
+
+@media (max-width: 640px){
+  .linha-ranking div{
+    margin: 0;
+    font-size: 13px;
+  }
+  .linha-ranking{
+    width: auto;
+  }
+
+  .esmaecer{
+    width: 100vw;
+  }
+
+  .title-of-game{
+    font-size: 36px;
+  }
+
+}
