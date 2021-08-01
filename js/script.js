@@ -10,8 +10,8 @@ let timer_and_score_id;
 let op = 1;
 let number_moves = 0;
 let aceppt = 0;
-let pontos = 0;
-let previous = aceppt;
+let erros = 0;
+let pontos = 1;
 let seconds = 0;
 let Matches = [0, 0];
 let cards = [
@@ -172,14 +172,14 @@ function flip_card(Elemento){
                 front_face_SecondCard.classList.remove("roda-front-face");
                 back_face_SecondCard.classList.remove("desroda-back-face");
             }, 1000);
+
+            erros++;
         }
         else{
 
             firstChoice.classList.add("disable");
 
             secondChoice.classList.add("disable");
-
-            previous = aceppt;
 
             aceppt++;
         }
@@ -272,8 +272,7 @@ function format_time(time){
 
 function score_counting(){
 
-    pontos =  ((((number_cards / 14) + number_cards/number_moves) + (seconds/4)) * number_cards).toFixed(0);
-
+    pontos = (((number_cards + (100/seconds) ) * number_cards) * ((aceppt + 1)/(erros + 1))).toFixed(0);  
     const score  = document.querySelector(".score");
 
     score.innerHTML = `Score: ${pontos}`;
