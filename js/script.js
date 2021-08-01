@@ -6,9 +6,13 @@ let front_face_firstCard;
 let back_face_firstCard;
 let front_face_SecondCard;
 let back_face_SecondCard;
+let timer_and_score_id;
 let op = 1;
 let number_moves = 0;
 let aceppt = 0;
+let pontos = 0;
+let previous = aceppt;
+let seconds = 0;
 let Matches = [0, 0];
 let cards = [
             "<img class='back-face' src='parrots/bobrossparrot.gif'",
@@ -20,10 +24,57 @@ let cards = [
             "<img class='back-face' src='parrots/unicornparrot.gif'"
             ]
 
+let users = [{name: "LeandrãoHACK", time: 45, cards: 14, score: 66}, {name: "shaolin do sertão", time: 45, cards: 14, score: 66}];
+
+
 cards.sort(comparador); 
 
 function comparador() { 
 	return Math.random() - 0.5; 
+}
+
+function save(){
+    const user = {
+        name: player_name,
+        time: seconds,
+        cards: number_cards,
+        score: pontos
+    }
+
+    users.push(user);
+
+    users.sort(function(x, y){
+        
+        if(x.score > y.score){
+            return -1;
+        }
+        else if(x.score < y.score){
+            return 1;
+        }
+        
+        return 0;
+    })
+
+    console.log(users);
+
+}
+
+function sreset(){
+    const memoizacao = document.querySelector(".memoizacao");
+    const ranking = document.querySelector(".ranking");
+
+    memoizacao.innerHTML = "";
+
+    ranking.innerHTML = "";
+
+    memoizacao.classList.toggle("suma");
+
+    op = 1;
+    aceppt = 0;
+    number_moves = 0;
+    seconds = 0;
+
+    cards.sort(comparador); 
 }
 
 function ChoiceRandomize(number_tuple){
@@ -39,6 +90,32 @@ function ChoiceRandomize(number_tuple){
     tuples_random.sort(comparador);
 
     return tuples_random;
+}
+
+function showranking(){
+    const ranking = document.querySelector(".ranking");
+
+    document.querySelector(".memoizacao").classList.toggle("apareca");
+
+    setTimeout(function(){ 
+        ranking.classList.toggle("esmaecer");
+    }, 3000);
+
+    setTimeout(function(){
+        document.querySelector(".ranking").classList.toggle("esmaecer");        
+    }, 5500);
+
+    ranking.innerHTML += `<p class="name title-of-game">Ranking</p>`
+    
+    console.log(users);
+    console.log(users.length)
+    for(let i = 0; i < users.length; i++){
+
+        ranking.innerHTML += ` <div class='linha-ranking'>
+                                    <div><ion-icon name='person-sharp'></ion-icon>: ${users[i].name}</div> <div><ion-icon name='copy-sharp'></ion-icon>: ${users[i].cards} cartas</div> <div><ion-icon name='hourglass-sharp'></ion-icon>: ${users[i].time} segundos</div> <div><ion-icon name="logo-npm"></ion-icon>: ${users[i].score}</div>
+                               </div>
+                             `
+    }
 }
 
 function flip_card(Elemento){
@@ -109,7 +186,32 @@ function flip_card(Elemento){
 
         setTimeout(function(){
             if(IsFinalGame()){
-                alert(`você finalizou o game com ${number_moves} number_moves :D`);
+                clearInterval(timer_and_score_id);
+
+                alert(`você finalizou o game com ${number_moves} movimentos em ${seconds} segundos, sua pontuação: ${pontos} pontos :D`);
+
+                save();
+
+                showranking();
+
+                setTimeout(function(){
+                    sreset();
+                }, 7000);
+
+                setTimeout(function(){
+
+                let continuar = prompt("Você deseja jogar novamente? [Sim/Não] ");
+
+                while(continuar[0] !== "S" && continuar[0] !== "N" && continuar[0] !== "s" && continuar[0] !== "n" ){
+                    
+                    continuar = prompt("Você deseja jogar novamente? [Sim/Não] ");
+                }
+
+                if(continuar[0] === 'S' || continuar[0] === 's'){
+                    
+                    initialize();
+                }
+                }, 7500);
             }
         }, 1000);
     }
@@ -121,11 +223,13 @@ function flip_card(Elemento){
 
 function initialize(){
     
+    player_name = prompt("Insira seu nome para aparecer no ranking: ");
+
     number_cards = prompt("Escolha a quantidade de cartas que você deseja jogar, mi patron")
 
     while(number_cards < 4 || number_cards % 2 !== 0 || number_cards > 14){
 
-        number_cards = prompt("Escolha a quantidade de cartas que você deseja jogar, VALIDA (4 à 14)! mi patron!")
+        number_cards = prompt("Escolha a quantidade de cartas VALIDA! (4 à 14) que você deseja jogar, mi patron")
     }
 
     const tuples = ChoiceRandomize(number_cards);
@@ -144,11 +248,35 @@ function initialize(){
                            </div> `
     }
 
+    timer_and_score_id = setInterval(function () { 
+        cronominos();
+        score_counting()
+    }, 1000);
 }
 
 function IsFinalGame(){
 
     return (aceppt === number_cards / 2);
+}
+
+function cronominos(){
+    const Game_time = document.querySelector(".cronometro");
+    seconds++;
+    Game_time.innerHTML = format_time(seconds)
+}
+
+function format_time(time){
+
+    return time >= 10 ? `Time:${time}` : `Time: 0${time}`;
+}
+
+function score_counting(){
+
+    pontos =  ((((number_cards / 14) + number_cards/number_moves) + (seconds/4)) * number_cards).toFixed(0);
+
+    const score  = document.querySelector(".score");
+
+    score.innerHTML = `Score: ${pontos}`;
 }
 
 initialize();
