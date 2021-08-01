@@ -103,7 +103,7 @@ function showranking(){
 
     setTimeout(function(){
         document.querySelector(".ranking").classList.toggle("esmaecer");        
-    }, 5500);
+    }, 8500);
 
     ranking.innerHTML += `<p class="name title-of-game">Ranking</p>`
     
