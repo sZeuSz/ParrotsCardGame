@@ -2,6 +2,7 @@
 *{
     box-sizing: border-box;
 }
+
 .title-of-game{
     color:#75B79E;
     font-family: 'Roboto', sans-serif;
@@ -9,20 +10,22 @@
     font-style: normal;
     font-weight: 700;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 body{
     background-color: #EEF9BF;
 }
+
 .memoizacao{
     display:flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 0 auto;
-    width: 70vw;
+    width: 0;
     margin: 0 auto;
-    background-color: black;
+    opacity: 0;
+    transition: all 3s;
 }
 .carta{
     display:flex;
@@ -46,53 +49,60 @@ body{
     height:146px;
     border-radius: 5px;
     background-color: #A7E9AF;
-  }
+    transition: all 5s;
+}
 
-  .front-face {
-    position: absolute;
-    left: 8px;
-    width: 100px;
-    height: 100px;
-    /* background-color: #A7E9AF; */
-    /* border-radius: 10px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backface-visibility: hidden;
-    transition: all .9s;
-    transform-style: preserve-3d;
-    
-  }
+.front-face {
+  position: absolute;
+  left: 8px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  transition: all .9s;
+  transform-style: preserve-3d;
+  
+}
 
-  .back-face {
-    position: absolute;
-    left: 8px;
-    width: 100px;
-    height: 100px;
-    background-color: #A7E9AF;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backface-visibility: hidden;
-    transition: all .9s;
-    transform-style: preserve-3d;
-    transform: rotateY(180deg);
-  }
+.back-face {
+  position: absolute;
+  left: 8px;
+  width: 100px;
+  height: 100px;
+  background-color: #A7E9AF;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  transition: all .9s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+}
 
 .desroda-back-face{
   transform: rotateY(0deg);
 }
-  /* .card:hover .back-face {
-    transform: rotateY(0deg);
-  }
 
-  .card:hover .front-face {
-    transform: rotateY(-180deg);
-  } */
 .roda-front-face{
   transform: rotateY(-180deg);
 }
-.clicado{
 
+.apareca{
+  width: 70vw;
+  opacity: 1;
+}
+
+.esmaecer{
+  transition: all 2s;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  opacity: 1;
+}
+
+.disable{
+  pointer-events:none;
 }
