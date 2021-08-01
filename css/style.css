@@ -182,8 +182,8 @@ ion-icon{
 
 @media (max-width: 640px){
   .linha-ranking div{
-    margin: 0;
-    font-size: 10px;
+    margin: 0 5px;
+    font-size: 8px;
   }
   .linha-ranking{
     width: auto;
