@@ -24,7 +24,7 @@ let cards = [
             "<img class='back-face' src='parrots/unicornparrot.gif'"
             ]
 
-let users = [{name: "Leandrão", time: 45, cards: 14, score: 12720}, {name: "Hacker", time: 30, cards: 14, score: 14000}];
+let users = [{name: "Leandrão", time: 45, cards: 14, score: 10000}, {name: "Hacker", time: 30, cards: 14, score: 10500}];
 
 
 cards.sort(comparador); 
