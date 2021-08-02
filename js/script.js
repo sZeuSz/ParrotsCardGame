@@ -7,11 +7,11 @@ let back_face_firstCard;
 let front_face_SecondCard;
 let back_face_SecondCard;
 let timer_and_score_id;
-let op = 1;
+let operation = 1;
 let multiplicador = 1;
 let number_moves = 0;
 let aceppt = 0;
-let pontos = 1;
+let pontos = 0;
 let seconds = 0;
 let Matches = [0, 0];
 let cards = [
@@ -33,7 +33,7 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
-function save(){
+function save_user(){
     const user = {
         name: player_name,
         time: seconds,
@@ -55,24 +55,20 @@ function save(){
         return 0;
     })
 
-    console.log(users);
 
 }
 
-function sreset(){
-    const memoizacao = document.querySelector(".memoizacao");
+function reset_game(){
     const ranking = document.querySelector(".ranking");
-
-    memoizacao.innerHTML = "";
 
     ranking.innerHTML = "";
 
-    memoizacao.classList.toggle("suma");
-
-    op = 1;
+    operation = 1;
     aceppt = 0;
     number_moves = 0;
     seconds = 0;
+    pontos = 0;
+    multiplicador = 1;
 
     cards.sort(comparador); 
 }
@@ -94,10 +90,13 @@ function ChoiceRandomize(number_tuple){
 
 function showranking(){
     const ranking = document.querySelector(".ranking");
+    const memoizacao = document.querySelector(".memoizacao");
 
-    document.querySelector(".memoizacao").classList.toggle("apareca");
+    memoizacao.classList.toggle("apareca");
 
     setTimeout(function(){ 
+        memoizacao.innerHTML = "";
+        memoizacao.classList.toggle("suma");
         ranking.classList.toggle("esmaecer");
     }, 3000);
 
@@ -107,8 +106,6 @@ function showranking(){
 
     ranking.innerHTML += `<p class="name title-of-game">Ranking</p>`
     
-    console.log(users);
-    console.log(users.length)
     for(let i = 0; i < users.length; i++){
 
         ranking.innerHTML += ` <div class='linha-ranking'>
@@ -119,9 +116,8 @@ function showranking(){
 }
 
 function flip_card(Elemento){
-    Elemento.classList.add("disable");
 
-    if((op & 1)){
+    if((operation & 1)){
 
         firstChoice = Elemento;
         firstChoice.classList.add("disable");
@@ -150,20 +146,15 @@ function flip_card(Elemento){
         
         
         Matches[1] = (document.querySelector(".card.dois .desroda-back-face").getAttribute("src"));
-        
-        
+                
     }
     
-    if((op & 1) === 0){
+    if((operation & 1) === 0){
 
         firstChoice.classList.remove("um");
         secondChoice.classList.remove("dois");
 
-        if(Matches[0] !== Matches[1] && op % 2 == 0){
-            
-            firstChoice.classList.remove("disable");
-
-            secondChoice.classList.remove("disable");
+        if(Matches[0] !== Matches[1] && operation % 2 == 0){
 
             setTimeout(function(){
                 front_face_firstCard.classList.remove("roda-front-face");
@@ -171,16 +162,16 @@ function flip_card(Elemento){
 
                 front_face_SecondCard.classList.remove("roda-front-face");
                 back_face_SecondCard.classList.remove("desroda-back-face");
+
+                firstChoice.classList.remove("disable");
+
+                secondChoice.classList.remove("disable");
             }, 1000);
 
             multiplicador = 1 - 0.2;
             seconds += 15;
         }
         else{
-
-            firstChoice.classList.add("disable");
-
-            secondChoice.classList.add("disable");
 
             aceppt++;
             multiplicador++;
@@ -192,13 +183,13 @@ function flip_card(Elemento){
 
                 alert(`você finalizou o game com ${number_moves} movimentos em ${seconds} segundos, sua pontuação: ${pontos} pontos :D`);
 
-                save();
+                save_user();
 
                 showranking();
 
                 setTimeout(function(){
-                    sreset();
-                }, 10500);
+                    reset_game();
+                }, 10100);
 
                 setTimeout(function(){
 
@@ -218,7 +209,7 @@ function flip_card(Elemento){
         }, 1000);
     }
 
-    op++;
+    operation++;
     number_moves++;
 }
 
@@ -256,7 +247,7 @@ function initialize(){
 
     timer_and_score_id = setInterval(function () { 
         cronominos();
-        score_counting()
+        score_counting();
     }, 1000);
 }
 
@@ -279,6 +270,7 @@ function format_time(time){
 function score_counting(){
     
     pontos = (((((number_cards + (4/seconds) ) * number_cards)) * multiplicador)).toFixed(0);  
+
     const score  = document.querySelector(".score");
 
     score.innerHTML = `Score: ${pontos}`;
