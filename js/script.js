@@ -38,7 +38,7 @@ function save(){
         name: player_name,
         time: seconds,
         cards: number_cards,
-        score: pontos
+        score: Number(pontos)
     }
 
     users.push(user);
