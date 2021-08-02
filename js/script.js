@@ -173,7 +173,7 @@ function flip_card(Elemento){
                 back_face_SecondCard.classList.remove("desroda-back-face");
             }, 1000);
 
-            multiplicador -= 0.2;
+            multiplicador = 1 - 0.2;
         }
         else{
 
