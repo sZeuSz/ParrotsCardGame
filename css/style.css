@@ -182,13 +182,11 @@ ion-icon{
 
 @media (max-width: 640px){
   .linha-ranking div{
-    margin: 0px 0px 25px 0px;
+    margin: 0;
+    margin: 0px 0px 15px 0px;
     font-size: 10px;
-    width: 50px;
+    width: 80px;
 
-  }
-  .linha-ranking div ion-icon{
-    font-size: 10px;
   }
   .linha-ranking{
     width: 100%;

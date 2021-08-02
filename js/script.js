@@ -24,7 +24,7 @@ let cards = [
             "<img class='back-face' src='parrots/unicornparrot.gif'"
             ]
 
-let users = [{name: "LeandrãoHACK", time: 45, cards: 14, score: 66}, {name: "shaolin do sertão", time: 45, cards: 14, score: 66}];
+let users = [{name: "Leandrão", time: 45, cards: 14, score: 12720}, {name: "Hacker", time: 30, cards: 14, score: 14000}];
 
 
 cards.sort(comparador); 
@@ -196,7 +196,7 @@ function flip_card(Elemento){
 
                 setTimeout(function(){
                     sreset();
-                }, 9000);
+                }, 10500);
 
                 setTimeout(function(){
 
@@ -211,7 +211,7 @@ function flip_card(Elemento){
                     
                     initialize();
                 }
-                }, 9500);
+                }, 10600);
             }
         }, 1000);
     }
