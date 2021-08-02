@@ -8,9 +8,9 @@ let front_face_SecondCard;
 let back_face_SecondCard;
 let timer_and_score_id;
 let op = 1;
+let multiplicador = 1;
 let number_moves = 0;
 let aceppt = 0;
-let erros = 0;
 let pontos = 1;
 let seconds = 0;
 let Matches = [0, 0];
@@ -173,7 +173,7 @@ function flip_card(Elemento){
                 back_face_SecondCard.classList.remove("desroda-back-face");
             }, 1000);
 
-            erros++;
+            multiplicador -= 0.2;
         }
         else{
 
@@ -182,6 +182,7 @@ function flip_card(Elemento){
             secondChoice.classList.add("disable");
 
             aceppt++;
+            multiplicador++;
         }
 
         setTimeout(function(){
@@ -271,8 +272,8 @@ function format_time(time){
 }
 
 function score_counting(){
-
-    pontos = (((number_cards + (100/seconds) ) * number_cards) * ((aceppt + 1)/(erros + 1))).toFixed(0);  
+    
+    pontos = (((((number_cards + (4/seconds) ) * number_cards)) * multiplicador)).toFixed(0);  
     const score  = document.querySelector(".score");
 
     score.innerHTML = `Score: ${pontos}`;
