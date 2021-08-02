@@ -174,6 +174,7 @@ function flip_card(Elemento){
             }, 1000);
 
             multiplicador = 1 - 0.2;
+            seconds += 15;
         }
         else{
 
