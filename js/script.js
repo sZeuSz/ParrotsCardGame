@@ -227,6 +227,10 @@ function initialize(){
     
     player_name = prompt("Insira seu nome para aparecer no ranking: ");
 
+    while(!player_name){
+        player_name = prompt("Insira seu nome para aparecer no ranking: ");
+    }
+
     number_cards = prompt("Escolha a quantidade de cartas que você deseja jogar, mi patron")
 
     while(number_cards < 4 || number_cards % 2 !== 0 || number_cards > 14){
