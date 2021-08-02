@@ -196,7 +196,7 @@ function flip_card(Elemento){
 
                 setTimeout(function(){
                     sreset();
-                }, 7000);
+                }, 9000);
 
                 setTimeout(function(){
 
@@ -211,7 +211,7 @@ function flip_card(Elemento){
                     
                     initialize();
                 }
-                }, 7500);
+                }, 9500);
             }
         }, 1000);
     }
